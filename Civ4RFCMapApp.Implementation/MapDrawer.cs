@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Drawing;
+using System.IO;
 using Civ4RFCMapApp.Core.Enums;
 using Civ4RFCMapApp.Core.Models;
 
@@ -7,13 +8,10 @@ namespace Civ4RFCMapApp.Implementation
 {
     public class MapDrawer
     {
-        private const string SavePath = @"C:\Users\Zach\Desktop\RFCMarathonMaps\{Name}.bmp";
-
-        public void Draw(Map map)
+        public void Draw(Map map, string path)
         {
             using (var bitmap = new Bitmap(map.Width, map.Height))
             {
-
                 for (int i = 0; i < map.Width; i++)
                 {
                     for (int j = 0; j < map.Height; j++)
@@ -21,7 +19,7 @@ namespace Civ4RFCMapApp.Implementation
                         bitmap.SetPixel(i, j, GetColor(map.Plots[i, map.Height - j - 1]));
                     }
                 }
-                bitmap.Save(SavePath.Replace("{Name}", map.Name));
+                bitmap.Save(path);
             }
         }
 
