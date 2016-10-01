@@ -1,0 +1,33 @@
+﻿namespace Civ4RFCMapApp.Core.Enums
+{
+    public enum Civilization
+    {
+        America,
+        Arabia,
+        Aztec,
+        Babylonia,
+        Carthage,
+        China,
+        Egypt,
+        England,
+        Ethiopia,
+        France,
+        Germany,
+        Greece,
+        Inca,
+        India,
+        Japan,
+        Khmer,
+        Mali,
+        Maya,
+        Mongolia,
+        Netherlands,
+        Persia,
+        Portugal,
+        Rome,
+        Russia,
+        Spain,
+        Turkey,
+        Vikings,
+    }
+}
