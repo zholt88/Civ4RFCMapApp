@@ -25,13 +25,15 @@ namespace Civ4RFCMapApp.Implementation
         public Map GetMap(IReadOnlyList<string> mapFileLines, string filePath)
         {
             Tuple<int, int> mapDimensions = GetMapDimensions(mapFileLines);
-            return new Map
-            {
-                Name = GetMapName(filePath),
-                Width = mapDimensions.Item1,
-                Height = mapDimensions.Item2,
-                Plots = GetPlots(mapDimensions.Item1, mapDimensions.Item2, mapFileLines)
-            };
+            return mapDimensions.Item1 == 0 || mapDimensions.Item2 == 0
+                ? null
+                : new Map
+                {
+                    Name = GetMapName(filePath),
+                    Width = mapDimensions.Item1,
+                    Height = mapDimensions.Item2,
+                    Plots = GetPlots(mapDimensions.Item1, mapDimensions.Item2, mapFileLines)
+                };
         }
 
         private string GetMapName(string filePath)

@@ -22,17 +22,28 @@ namespace Civ4RFCMapApp.WebUI.Controllers
         [HttpPost]
         public ActionResult Index(HttpPostedFileBase file)
         {
-            Map map = _mapFileReader.GetMap(GetBytes(file), file.FileName);
-            string path = Path.Combine(Server.MapPath("~/Content/Images/UploadedMaps"), $"{map.Name}.bmp");
-            _mapDrawer.Draw(map, path);
-            _imageResizer.Resize(path, 4, 4);
-            var viewModel = new MapViewModel
+            MapViewModel viewModel;
+            Map map = file == null ? null : _mapFileReader.GetMap(GetBytes(file), file.FileName);
+            if (map == null)
             {
-                Width = map.Width,
-                Height = map.Height,
-                Name = map.Name,
-                ImagePath = $"Content/Images/UploadedMaps/{map.Name}.bmp"
-            };
+                viewModel = new MapViewModel
+                {
+                    Name = "Invalid Map"
+                };
+            }
+            else
+            {
+                string path = Path.Combine(Server.MapPath("~/Content/Images/UploadedMaps"), $"{map.Name}.bmp");
+                _mapDrawer.Draw(map, path);
+                _imageResizer.Resize(path, 4, 4);
+                viewModel = new MapViewModel
+                {
+                    Width = map.Width,
+                    Height = map.Height,
+                    Name = map.Name,
+                    ImagePath = $"Content/Images/UploadedMaps/{map.Name}.bmp"
+                };
+            }
             return View(viewModel);
         }
 
