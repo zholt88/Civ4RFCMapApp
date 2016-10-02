@@ -41,7 +41,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Common.cs" />
     <Compile Include="ImageReader.cs" />
     <Compile Include="ImageResizer.cs" />
     <Compile Include="MapDrawer.cs" />

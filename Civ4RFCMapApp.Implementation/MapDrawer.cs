@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Drawing;
-using System.IO;
 using Civ4RFCMapApp.Core.Enums;
 using Civ4RFCMapApp.Core.Models;
 
@@ -10,7 +9,7 @@ namespace Civ4RFCMapApp.Implementation
     {
         public void Draw(Map map, string path)
         {
-            using (var bitmap = new Bitmap(map.Width, map.Height))
+            using (var bitmap = new Bitmap(map.Width * 2, map.Height))
             {
                 for (int i = 0; i < map.Width; i++)
                 {
@@ -19,7 +18,38 @@ namespace Civ4RFCMapApp.Implementation
                         bitmap.SetPixel(i, j, GetColor(map.Plots[i, map.Height - j - 1]));
                     }
                 }
+
+                for (int i = map.Width; i < map.Width * 2; i++)
+                {
+                    for (int j = 0; j < map.Height; j++)
+                    {
+                        bitmap.SetPixel(i, map.Height - j - 1, GetStabilityColor(map.Plots[i - map.Width, j]));
+                    }
+                }
+
+
                 bitmap.Save(path);
+            }
+        }
+
+        private Color GetStabilityColor(Plot mapPlot)
+        {
+            switch (mapPlot.Stability)
+            {
+                case Stability.CannotSettle:
+                    return Color.FromArgb(0, 0, 0);
+                case Stability.Bad:
+                    return Color.FromArgb(255, 155, 0);
+                case Stability.Worst:
+                    return Color.FromArgb(255, 0, 0);
+                case Stability.Contested:
+                    return Color.FromArgb(255, 255, 0);
+                case Stability.Expansion:
+                    return Color.FromArgb(0, 255, 0);
+                case Stability.Home:
+                    return Color.FromArgb(0, 155, 0);
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
 

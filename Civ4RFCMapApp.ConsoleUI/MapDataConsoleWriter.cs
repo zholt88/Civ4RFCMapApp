@@ -22,12 +22,12 @@ namespace Civ4RFCMapApp.ConsoleUI
             }
         }
 
-        public void WriteImageColorCounts(Civilization civilization)
+        public void WriteImageColorCounts(string fileName)
         {
-            List<Color> colors = _imageReader.GetSingleMapColors(civilization);
+            List<Color> colors = _imageReader.GetSingleMapColors(fileName);
             Dictionary<Stability, int> stabilityColorCounts = _imageReader.GetStabilityColorCounts(colors);
 
-            Console.WriteLine(civilization);
+            Console.WriteLine(fileName);
             foreach (KeyValuePair<Stability, int> stabilityColorCount in stabilityColorCounts.Where(m => m.Key != Stability.CannotSettle))
             {
                 Console.WriteLine($"{stabilityColorCount.Key} Count: {stabilityColorCount.Value}");

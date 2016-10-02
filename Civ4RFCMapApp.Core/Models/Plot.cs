@@ -9,5 +9,6 @@ namespace Civ4RFCMapApp.Core.Models
         public Feature Feature { get; set; }
         public bool IsWestOfRiver { get; set; }
         public bool IsNorthOfRiver { get; set; }
+        public Stability Stability { get; set; }
     }
 }
