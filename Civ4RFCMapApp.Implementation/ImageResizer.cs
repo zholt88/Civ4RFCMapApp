@@ -1,10 +1,9 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
+using Civ4RFCMapApp.Core.Interfaces;
 
 namespace Civ4RFCMapApp.Implementation
 {
-    public class ImageResizer
+    public class ImageResizer : IImageResizer
     {
         public void Resize(string imagePath, double widthRatio, double heightRatio)
         {
@@ -26,10 +25,6 @@ namespace Civ4RFCMapApp.Implementation
                 original.Dispose();
                 resized.Save(imagePath);
                 resized.Dispose();
-            }
-            catch (Exception)
-            {
-                throw;
             }
             finally
             {

@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +46,10 @@
     <Compile Include="Enums\PlotType.cs" />
     <Compile Include="Enums\Stability.cs" />
     <Compile Include="Enums\Terrain.cs" />
+    <Compile Include="Interfaces\IImageReader.cs" />
+    <Compile Include="Interfaces\IImageResizer.cs" />
+    <Compile Include="Interfaces\IMapDrawer.cs" />
+    <Compile Include="Interfaces\IMapFileReader.cs" />
     <Compile Include="Models\Map.cs" />
     <Compile Include="Models\Plot.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

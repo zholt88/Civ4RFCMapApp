@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using Civ4RFCMapApp.Core.Enums;
+using Civ4RFCMapApp.Core.Interfaces;
 using Civ4RFCMapApp.Core.Models;
 using Civ4RFCMapApp.Extensions;
 
 namespace Civ4RFCMapApp.Implementation
 {
-    public class MapFileReader
+    public class MapFileReader : IMapFileReader
     {
         public Map GetMap(string filePath)
         {

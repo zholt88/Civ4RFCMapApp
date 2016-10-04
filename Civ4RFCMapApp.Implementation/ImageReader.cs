@@ -1,13 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using Civ4RFCMapApp.Core.Enums;
+using Civ4RFCMapApp.Core.Interfaces;
 using Civ4RFCMapApp.Core.Models;
 
 namespace Civ4RFCMapApp.Implementation
 {
-    public class ImageReader
+    public class ImageReader : IImageReader
     {
         private readonly Dictionary<Stability, List<Color>> _stabilityColors = new Dictionary<Stability, List<Color>>
         {

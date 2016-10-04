@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Drawing;
 using Civ4RFCMapApp.Core.Enums;
+using Civ4RFCMapApp.Core.Interfaces;
 using Civ4RFCMapApp.Core.Models;
 
 namespace Civ4RFCMapApp.Implementation
 {
-    public class MapDrawer
+    public class MapDrawer : IMapDrawer
     {
         public void Draw(Map map, string path)
         {
-            using (var bitmap = new Bitmap(map.Width * 2, map.Height))
+            using (var bitmap = new Bitmap(map.Width, map.Height))
             {
                 for (int i = 0; i < map.Width; i++)
                 {
@@ -18,16 +19,7 @@ namespace Civ4RFCMapApp.Implementation
                         bitmap.SetPixel(i, j, GetColor(map.Plots[i, map.Height - j - 1]));
                     }
                 }
-
-                for (int i = map.Width; i < map.Width * 2; i++)
-                {
-                    for (int j = 0; j < map.Height; j++)
-                    {
-                        bitmap.SetPixel(i, map.Height - j - 1, GetStabilityColor(map.Plots[i - map.Width, j]));
-                    }
-                }
-
-
+                
                 bitmap.Save(path);
             }
         }
